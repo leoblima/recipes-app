@@ -21,7 +21,7 @@ function App() {
         </object>
       </div> */}
       <Header />
-      <Route path='/profile' component={Profile} />
+      <Route path="/profile" component={ Profile } />
     </BrowserRouter>
   );
 }

@@ -1,20 +1,40 @@
-import { React, useContext, useState } from 'react';
+import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Context } from '../context/context';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 function Header() {
   const history = useHistory();
   const [search, setSearch] = useState(false);
+
   const getPageName = ({ location: { pathname } }) => {
     switch (pathname) {
-      case '/':
-        return 'Home Page';
-      case '/profile':
-        return 'Profile';
-      default:
-        break;
+    case '/':
+      return 'Home Page';
+    case '/profile':
+      return 'Profile';
+    case '/foods':
+      return 'Página inicial de comidas';
+    case '/drinks':
+      return 'Página inicial de bebidas';
+    case '/explore':
+      return 'Explorar';
+    case '/explore/foods':
+      return 'Explorar comidas';
+    case '/explore/drinks':
+      return 'Explorar Bebidas';
+    case '/explore/foods/ingredients':
+      return 'Explorar comidas por ingrediente';
+    case '/explore/drinks/ingredients':
+      return 'Explorar bebidas por ingrediente';
+    case '/explore/foods/nationalities':
+      return 'Explorar comidas por nacionalidade';
+    case '/done-recipes':
+      return 'Receitas feitas';
+    case '/favorite-recipes':
+      return 'Receitas favoritas';
+    default:
+      return 'Not Found';
     }
   };
 
@@ -30,21 +50,25 @@ function Header() {
 
   return (
     <div>
-      <h3 data-testsid='page-title'>{getPageName(history)}</h3>
-      <button>
+      <h3 data-testsid="page-title">{ getPageName(history) }</h3>
+      <button
+        type="button"
+        data-testsid="profile-top-btn"
+        onClick={ (e) => goToProfilePage(e) }
+      >
         <img
-          src={profileIcon}
-          alt='profile-icon'
-          data-testsid='profile-top-btn'
-          onClick={(e) => goToProfilePage(e)}
+          src={ profileIcon }
+          alt="profile-icon"
         />
       </button>
-      <button>
+      <button
+        type="button"
+        data-testsid="search-top-btn"
+        onClick={ (e) => getSearchBar(e) }
+      >
         <img
-          src={searchIcon}
-          alt='seacrh-icon'
-          data-testsid='search-top-btn'
-          onClick={(e) => getSearchBar(e)}
+          src={ searchIcon }
+          alt="seacrh-icon"
         />
       </button>
       {search && <h1>SearchBar</h1>}
