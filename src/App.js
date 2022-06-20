@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Profile from './pages/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
-import Header from './components/Header';
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
           Glass
         </object>
       </div> */}
-      <Header />
       <Route path="/profile" component={ Profile } />
     </BrowserRouter>
   );
