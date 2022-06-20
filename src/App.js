@@ -5,9 +5,13 @@ import Profile from './pages/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Explore from './pages/Explore';
 
+import Login from './pages/Login';
+
+
 function App() {
   return (
     <BrowserRouter>
+      <Login />
       {/* <div className="meals">
         <span className="logo">TRYBE</span>
         <object
@@ -18,8 +22,11 @@ function App() {
           Glass
         </object>
       </div> */}
+
       <Route path="/profile" component={ Profile } />
+
       <Route path="/explore" component={ Explore } />
+
     </BrowserRouter>
   );
 }

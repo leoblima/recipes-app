@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
-  const [teste, setTeste] = useState('Teste');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const initialState = {
-    teste,
-    setTeste,
+    email,
+    setEmail,
+    password,
+    setPassword,
   };
 
   return (
