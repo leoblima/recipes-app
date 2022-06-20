@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 // import rockGlass from './images/rockGlass.svg';
 import Profile from './pages/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Explore from './pages/Explore';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </object>
       </div> */}
       <Route path="/profile" component={ Profile } />
+      <Route path="/explore" component={ Explore } />
     </BrowserRouter>
   );
 }
