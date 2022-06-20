@@ -8,16 +8,6 @@ import Explore from './pages/Explore';
 function App() {
   return (
     <BrowserRouter>
-      {/* <div className="meals">
-        <span className="logo">TRYBE</span>
-        <object
-          className="rocksGlass"
-          type="image/svg+xml"
-          data={ rockGlass }
-        >
-          Glass
-        </object>
-      </div> */}
       <Route path="/profile" component={ Profile } />
       <Route path="/explore" component={ Explore } />
     </BrowserRouter>
