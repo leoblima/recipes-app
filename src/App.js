@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
-// import rockGlass from './images/rockGlass.svg';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Profile from './pages/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 
@@ -19,6 +20,9 @@ function App() {
           Glass
         </object>
       </div> */}
+
+      <Route path="/profile" component={ Profile } />
+
     </BrowserRouter>
   );
 }
