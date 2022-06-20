@@ -31,7 +31,6 @@ const Explore = () => {
         data-testid="explore-drinks"
         onClick={ redirectToExploreDrinks }
         className="btn btn-dark"
-        disabled
       >
         Explore Drinks
       </button>
