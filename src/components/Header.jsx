@@ -6,6 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 function Header() {
   const history = useHistory();
   const [search, setSearch] = useState(false);
+  const [searchAvailable, setSearchAvailable] = useState(false)
 
   const getPageName = ({ location: { pathname } }) => {
     switch (pathname) {
@@ -14,6 +15,7 @@ function Header() {
     case '/profile':
       return 'Profile';
     case '/foods':
+      setSearchAvailable(true);
       return 'Página inicial de comidas';
     case '/drinks':
       return 'Página inicial de bebidas';
@@ -28,6 +30,7 @@ function Header() {
     case '/explore/drinks/ingredients':
       return 'Explorar bebidas por ingrediente';
     case '/explore/foods/nationalities':
+      setSearchAvailable(true);
       return 'Explorar comidas por nacionalidade';
     case '/done-recipes':
       return 'Receitas feitas';
@@ -61,7 +64,7 @@ function Header() {
           alt="profile-icon"
         />
       </button>
-      <button
+      {searchAvailable && <button
         type="button"
         data-testsid="search-top-btn"
         onClick={ (e) => getSearchBar(e) }
@@ -70,7 +73,7 @@ function Header() {
           src={ searchIcon }
           alt="seacrh-icon"
         />
-      </button>
+      </button>}
       {search && <h1>SearchBar</h1>}
     </div>
   );
