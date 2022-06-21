@@ -6,7 +6,7 @@ const Categories = ({ data }) => {
   const recipes = data.slice(0, maxRange);
 
   return (
-    <aside>
+    <nav>
       {recipes.map((item) => (
         <button
           type="button"
@@ -16,7 +16,7 @@ const Categories = ({ data }) => {
           { item.strCategory }
         </button>
       ))}
-    </aside>
+    </nav>
   );
 };
 
