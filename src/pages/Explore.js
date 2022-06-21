@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import BottomMenu from '../components/BottomMenu';
+import Header from '../components/Header';
 
 const Explore = () => {
   const history = useHistory();
@@ -17,6 +18,7 @@ const Explore = () => {
     <div
       className="explore container d-flex flex-column justify-content-center"
     >
+      <Header />
       <button
         type="button"
         data-testid="explore-foods"

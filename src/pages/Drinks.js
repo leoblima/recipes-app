@@ -1,8 +1,12 @@
 import React from 'react';
 import BottomMenu from '../components/BottomMenu';
+import Header from '../components/Header';
 
 const Drinks = () => (
-  <BottomMenu />
+  <div>
+    <Header />
+    <BottomMenu />
+  </div>
 );
 
 export default Drinks;

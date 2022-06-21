@@ -1,5 +1,6 @@
 import { React } from 'react';
 import { useHistory } from 'react-router-dom';
+import Header from '../components/Header';
 // import { Context } from '../context/context';
 
 const Profile = () => {
@@ -23,6 +24,7 @@ const Profile = () => {
     <div
       className="d-flex flex-column align-items-center"
     >
+      <Header />
       <p data-testid="profile-email">
         email@mail.com
       </p>
