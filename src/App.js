@@ -12,15 +12,15 @@ import Drinks from './pages/Drinks';
 function App() {
   return (
     <BrowserRouter>
-      <Route exact path='/' component={Login} />
-      <Route exact path='/profile' component={Profile} />
-      <Route exact path='/explore' component={Explore} />
-      <Route exact path='/foods' component={Foods} />
-      <Route exact path='/drinks' component={Drinks} />
+      <Route exact path="/" component={ Login } />
+      <Route exact path="/profile" component={ Profile } />
+      <Route exact path="/explore" component={ Explore } />
+      <Route exact path="/foods" component={ Foods } />
+      <Route exact path="/drinks" component={ Drinks } />
       <Route
         exact
-        path='/explore/foods/nationalities'
-        component={ExploreByNationalities}
+        path="/explore/foods/nationalities"
+        component={ ExploreByNationalities }
       />
     </BrowserRouter>
   );
