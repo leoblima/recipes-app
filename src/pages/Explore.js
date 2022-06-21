@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import BottomMenu from '../components/BottomMenu';
 
 const Explore = () => {
   const history = useHistory();
@@ -32,6 +33,7 @@ const Explore = () => {
       >
         Explore Drinks
       </button>
+      <BottomMenu />
     </div>
   );
 };
