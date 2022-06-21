@@ -37,7 +37,6 @@ function Login() {
   useEffect(() => {
     const minPassword = checkPassword(password);
     const minEmail = checkEmail(email);
-    console.log(minPassword);
     if (minPassword && minEmail) {
       setDisabled(false);
     } else {

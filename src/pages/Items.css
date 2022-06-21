@@ -1,0 +1,29 @@
+h4 {
+  text-align: center;
+}
+
+.recipes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.recipes-img {
+  max-width: 150px;
+}
+
+.card-container {
+  background-color: rgb(241, 241, 241);
+  border: 1px rgb(126, 126, 126) solid;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.card-container:hover {
+  background-color: white;
+  border: 3px rgb(126, 126, 126) solid;
+  padding: 10px;
+  transform: scale(1.1);
+}
