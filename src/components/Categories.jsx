@@ -23,3 +23,5 @@ const Categories = ({ data }) => {
 Categories.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 }.isRequired;
+
+export default Categories;
