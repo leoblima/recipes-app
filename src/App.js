@@ -17,6 +17,7 @@ function App() {
       <Route path="/explore" component={ Explore } />
       <Route path="/foods" component={ Foods } />
       <Route path="/drinks" component={ Drinks } />
+
     </BrowserRouter>
   );
 }
