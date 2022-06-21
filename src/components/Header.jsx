@@ -11,32 +11,43 @@ function Header() {
   const getPageName = ({ location: { pathname } }) => {
     switch (pathname) {
     case '/':
-      return 'Home Page';
+      setSearchAvailable(false);
+      return 'Login';
     case '/profile':
+      setSearchAvailable(false);
       return 'Profile';
     case '/foods':
       setSearchAvailable(true);
       return 'Página inicial de comidas';
     case '/drinks':
+      setSearchAvailable(false);
       return 'Página inicial de bebidas';
     case '/explore':
+      setSearchAvailable(false);
       return 'Explorar';
     case '/explore/foods':
+      setSearchAvailable(false);
       return 'Explorar comidas';
     case '/explore/drinks':
+      setSearchAvailable(false);
       return 'Explorar Bebidas';
     case '/explore/foods/ingredients':
+      setSearchAvailable(false);
       return 'Explorar comidas por ingrediente';
     case '/explore/drinks/ingredients':
+      setSearchAvailable(false);
       return 'Explorar bebidas por ingrediente';
     case '/explore/foods/nationalities':
       setSearchAvailable(true);
       return 'Explorar comidas por nacionalidade';
     case '/done-recipes':
+      setSearchAvailable(false);
       return 'Receitas feitas';
     case '/favorite-recipes':
+      setSearchAvailable(false);
       return 'Receitas favoritas';
     default:
+      setSearchAvailable(false);
       return 'Not Found';
     }
   };
