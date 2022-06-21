@@ -22,7 +22,7 @@ h4 {
 }
 
 .card-container:hover {
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   border: 3px rgb(126, 126, 126) solid;
   padding: 10px;
   transform: scale(1.1);
