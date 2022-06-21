@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header() {
   const history = useHistory();
@@ -50,10 +51,10 @@ function Header() {
 
   return (
     <div>
-      <h3 data-testsid="page-title">{ getPageName(history) }</h3>
+      <h3 data-testid="page-title">{ getPageName(history) }</h3>
       <button
         type="button"
-        data-testsid="profile-top-btn"
+        data-testid="profile-top-btn"
         onClick={ (e) => goToProfilePage(e) }
       >
         <img
@@ -63,7 +64,7 @@ function Header() {
       </button>
       <button
         type="button"
-        data-testsid="search-top-btn"
+        data-testid="search-top-btn"
         onClick={ (e) => getSearchBar(e) }
       >
         <img
@@ -71,7 +72,7 @@ function Header() {
           alt="seacrh-icon"
         />
       </button>
-      {search && <h1>SearchBar</h1>}
+      {search && <SearchBar currentPage={ history.location.pathname } />}
     </div>
   );
 }

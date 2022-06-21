@@ -8,6 +8,8 @@ export const Context = createContext();
 const ContextProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [filteredFoods, setFilteredFoods] = useState([]);
+  const [filteredDrinks, setFilteredDrinks] = useState([]);
   const [foodsData, setFoodsData] = useState([]);
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinksData, setDrinksData] = useState([]);
@@ -37,6 +39,10 @@ const ContextProvider = ({ children }) => {
     setEmail,
     password,
     setPassword,
+    filteredFoods,
+    setFilteredFoods,
+    filteredDrinks,
+    setFilteredDrinks,
     foodsData,
     foodCategories,
     drinksData,
