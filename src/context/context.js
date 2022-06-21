@@ -6,12 +6,18 @@ export const Context = createContext();
 const ContextProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [filteredFoods, setFilteredFoods] = useState([]);
+  const [filteredDrinks, setFilteredDrinks] = useState([]);
 
   const initialState = {
     email,
     setEmail,
     password,
     setPassword,
+    filteredFoods,
+    setFilteredFoods,
+    filteredDrinks,
+    setFilteredDrinks,
   };
 
   return (
