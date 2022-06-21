@@ -2,7 +2,10 @@ import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getFoodRecipes, getFoodCategories } from '../services/FoodData';
 import { getDrinkRecipes, getDrinkCategories } from '../services/DrinkData';
-import { getNationalitiesData } from '../services/NationalitiesData';
+import {
+  getNationalitiesData,
+  getFoodsByNationData,
+} from '../services/NationalitiesData';
 
 export const Context = createContext();
 
@@ -14,12 +17,18 @@ const ContextProvider = ({ children }) => {
   const [drinksData, setDrinksData] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [nationalitiesData, setNationalitiesData] = useState(['All']);
-  const [selectedNationality, setSelectedNationality] = useState('')
+  const [selectedNationality, setSelectedNationality] = useState('All');
+  const [foodsByNationData, setFoodsByNationData] = useState([]);
 
   const getNationalities = async () => {
     const nationalities = await getNationalitiesData();
-    setNationalitiesData(nationalities);
-  }
+    setNationalitiesData([...nationalitiesData, ...nationalities]);
+  };
+
+  const getFoodsByNation = async () => {
+    const foodsByNation = await getFoodsByNationData(selectedNationality);
+    setFoodsByNationData(foodsByNation);
+  };
 
   const getData = async () => {
     const foods = await getFoodRecipes();
@@ -41,6 +50,12 @@ const ContextProvider = ({ children }) => {
     getNationalities();
   }, []);
 
+  useEffect(() => {
+    if (selectedNationality !== 'All') {
+      getFoodsByNation();
+    }
+  }, [selectedNationality]);
+
   const initialState = {
     email,
     setEmail,
@@ -53,6 +68,7 @@ const ContextProvider = ({ children }) => {
     nationalitiesData,
     selectedNationality,
     setSelectedNationality,
+    foodsByNationData,
   };
 
   return (

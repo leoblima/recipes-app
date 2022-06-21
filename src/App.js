@@ -8,6 +8,7 @@ import Foods from './pages/Foods';
 import ExploreByNationalities from './pages/ExploreByNationalities';
 import Login from './pages/Login';
 import Drinks from './pages/Drinks';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
         exact
         path="/explore/foods/nationalities"
         component={ ExploreByNationalities }
+      />
+      <Route
+        exact
+        path="/explore/drinks/nationalities"
+        component={ NotFound }
       />
     </BrowserRouter>
   );

@@ -1,13 +1,16 @@
 import { React, useContext } from 'react';
 import { Context } from '../context/context';
 
-
 const NationalitiesDropdown = () => {
- const {setSelectedNationality, selectedNationality} = useContext(Context);
+  const {
+    setSelectedNationality,
+    selectedNationality,
+    nationalitiesData,
+  } = useContext(Context);
 
-  const handleSelection = ({target: { value }}) => {
-  setSelectedNationality(value);
-  }
+  const handleSelection = ({ target: { value } }) => {
+    setSelectedNationality(value);
+  };
 
   return (
     <div>
@@ -18,7 +21,7 @@ const NationalitiesDropdown = () => {
         onChange={ (e) => handleSelection(e) }
         value={ selectedNationality }
       >
-        {nationalities.map((nationality, index) => (
+        {nationalitiesData.map((nationality, index) => (
           <option
             key={ `${nationality}-${index}` }
             value={ nationality }

@@ -6,15 +6,18 @@ import NationalitiesDropdown from '../components/NationalitiesDropdown';
 import RecipeCard from '../components/RecipeCard';
 
 const ExploreByNationalities = () => {
-  const { foodsData } = useContext(Context);
-  
+  const { foodsData, selectedNationality, foodsByNationData } = useContext(Context);
+
   return (
-  <div>
-    <Header />
-    <NationalitiesDropdown/>
-    <RecipeCard data={ foodsData } type="Meal" />
-    <BottomMenu />
-  </div>
+    <div>
+      <Header />
+      <NationalitiesDropdown />
+      { selectedNationality === 'All'
+        ? <RecipeCard data={ foodsData } type="Meal" />
+        : <RecipeCard data={ foodsByNationData } type="Meal" /> }
+      <BottomMenu />
+    </div>
   );
-}
+};
+
 export default ExploreByNationalities;
