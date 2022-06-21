@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getFoodRecipes, getFoodCategories } from '../services/FoodData';
 import { getDrinkRecipes, getDrinkCategories } from '../services/DrinkData';
+import { getNationalitiesData } from '../services/NationalitiesData';
 
 export const Context = createContext();
 
@@ -12,6 +13,13 @@ const ContextProvider = ({ children }) => {
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinksData, setDrinksData] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
+  const [nationalitiesData, setNationalitiesData] = useState(['All']);
+  const [selectedNationality, setSelectedNationality] = useState('')
+
+  const getNationalities = async () => {
+    const nationalities = await getNationalitiesData();
+    setNationalitiesData(nationalities);
+  }
 
   const getData = async () => {
     const foods = await getFoodRecipes();
@@ -30,6 +38,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     getData();
     getCategories();
+    getNationalities();
   }, []);
 
   const initialState = {
@@ -41,6 +50,9 @@ const ContextProvider = ({ children }) => {
     foodCategories,
     drinksData,
     drinkCategories,
+    nationalitiesData,
+    selectedNationality,
+    setSelectedNationality,
   };
 
   return (

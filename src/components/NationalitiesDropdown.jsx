@@ -1,25 +1,13 @@
-import { React, useEffect, useState } from 'react';
+import { React, useContext } from 'react';
+import { Context } from '../context/context';
 
-const NATIONALITIES_URL = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 
 const NationalitiesDropdown = () => {
-  const [nationalities, setNationalities] = useState(['All']);
+ const {setSelectedNationality, selectedNationality} = useContext(Context);
 
-  useEffect(() => {
-    const getNationalities = async () => {
-      try {
-        const apiResponse = await fetch(NATIONALITIES_URL);
-        if (apiResponse) {
-          const response = await apiResponse.json();
-          const areas = response.meals.map((area) => area.strArea);
-          setNationalities([nationalities, ...areas]);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getNationalities();
-  }, [nationalities]);
+  const handleSelection = ({target: { value }}) => {
+  setSelectedNationality(value);
+  }
 
   return (
     <div>
@@ -27,6 +15,8 @@ const NationalitiesDropdown = () => {
         name="nationality-dropdown"
         id="nationality-dropdown"
         data-testid="explore-by-nationality-dropdown"
+        onChange={ (e) => handleSelection(e) }
+        value={ selectedNationality }
       >
         {nationalities.map((nationality, index) => (
           <option
