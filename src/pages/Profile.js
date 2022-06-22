@@ -1,6 +1,7 @@
 import { React } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
+import BottomMenu from '../components/BottomMenu';
 // import { Context } from '../context/context';
 
 const Profile = () => {
@@ -59,6 +60,7 @@ const Profile = () => {
           Logout
         </button>
       </div>
+      <BottomMenu />
     </div>
   );
 };
