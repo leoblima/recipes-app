@@ -7,7 +7,7 @@ const DoneRecipes = () => {
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
   // const doneRecipes = [{
   //   id: 'id-da-receita',
-  //   type: 'comida-ou-bebida',
+  //   type: 'meal',
   //   nationality: 'nacionalidade-da-receita-ou-texto-vazio',
   //   category: 'categoria-da-receita-ou-texto-vazio',
   //   alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',

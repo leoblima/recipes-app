@@ -3,10 +3,23 @@ import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
 const DoneRecipeCard = ({ recipe, index }) => {
-  const { category, name, image, doneDate, tags } = recipe;
+  const { type,
+    category,
+    name,
+    image,
+    doneDate,
+    tags,
+    nationality,
+    alcoholicOrNot } = recipe;
   return (
     <section>
-      <p data-testid={ `${index}-horizontal-top-text` }>{ category }</p>
+      { type === 'food'
+        ? <p data-testid={ `${index}-horizontal-top-text` }>
+          { ` ${nationality} - ${category}` }
+          </p>
+        : <p data-testid={ `${index}-horizontal-top-text` }>
+          { ` ${alcoholicOrNot}` }
+          </p>}
       <img
         src={ image }
         alt={ `${name}-recipe` }
@@ -15,10 +28,13 @@ const DoneRecipeCard = ({ recipe, index }) => {
       <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
       <p data-testid={ `${index}-horizontal-done-date` }>{ doneDate }</p>
       <button
-        data-testid={ `${index}-horizontal-share-btn` }
         type="button"
       >
-        <img src={ shareIcon } alt="shareIcon.svg" />
+        <img
+          src={ shareIcon }
+          alt="shareIcon.svg"
+          data-testid={ `${index}-horizontal-share-btn` }
+        />
       </button>
       {
         tags && tags.slice(0, 2).map((tag, position) => (
