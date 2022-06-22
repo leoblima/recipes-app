@@ -11,6 +11,7 @@ import Drinks from './pages/Drinks';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
 import NotFound from './pages/NotFound';
+import DoneRecipes from './pages/DoneRecipes';
 import ExploreByIngredients from './pages/ExploreByIngredients';
 
 function App() {
@@ -35,8 +36,8 @@ function App() {
       />
       <Route
         exact
-        path="/explore/foods/ingredients"
-        component={ ExploreByIngredients }
+        path="/done-recipes"
+        component={ DoneRecipes }
       />
       <Route
         exact
