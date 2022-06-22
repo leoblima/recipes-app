@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const maxLength = 12;
 
 const FilteredDrinks = ({ filteredItems }) => {
   const [filteredLength] = useState(filteredItems.slice(0, maxLength));
-  useEffect(() => {
-
-  }, []);
-
   return (
     <div className=" d-flex flex-column text-center">
       { filteredLength.map((currentItem, index) => (
