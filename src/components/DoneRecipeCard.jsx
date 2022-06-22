@@ -21,13 +21,15 @@ const DoneRecipeCard = ({ recipe, index }) => {
         <img src={ shareIcon } alt="shareIcon.svg" />
       </button>
       {
-        tags && tags.map((tag, position) => (
+        tags && tags.slice(0, 2).map((tag, position) => (
           <button
             key={ `${tag}-${position}` }
+            data-testid={ `${index}-${tag}-horizontal-tag` }
             type="button"
           >
             { tag }
           </button>))
+
       }
     </section>
   );
