@@ -7,6 +7,12 @@ export const getFoodRecipes = async () => {
 };
 
 export const getFoodCategories = async () => {
-  const result = await fetch(foodDataCategory).then(((response) => response.json()));
+  const result = await fetch(foodDataCategory).then((response) => response.json());
+  return result.meals;
+};
+
+export const getFoodByCategories = async (category) => {
+  const foodDataByCategory = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
+  const result = await fetch(foodDataByCategory).then((response) => response.json());
   return result.meals;
 };
