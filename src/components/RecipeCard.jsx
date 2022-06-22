@@ -7,7 +7,7 @@ function RecipeCard({ data, type }) {
   const { filterByCategory } = useContext(Context);
   const maxRange = 12;
   const recipes = (filterByCategory || data).slice(0, maxRange);
-  const maxChar = 14;
+  // const maxChar = 14;
 
   return (
     <section className="recipes">
@@ -26,7 +26,7 @@ function RecipeCard({ data, type }) {
             <h6
               data-testid={ `${index}-card-name` }
             >
-              { item[`str${type}`].substring(0, maxChar) }
+              { item[`str${type}`] }
             </h6>
             <img
               src={ item[`str${type}Thumb`] }

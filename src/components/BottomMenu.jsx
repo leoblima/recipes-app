@@ -30,6 +30,7 @@ export default function BottomMenu() {
             src={ exploreIcon }
             data-testid="explore-bottom-btn"
             type="button"
+            onClick={ removeFilters }
           >
             <img src={ exploreIcon } alt="Ícone explorar" />
           </button>
@@ -39,6 +40,7 @@ export default function BottomMenu() {
             src={ mealIcon }
             data-testid="food-bottom-btn"
             type="button"
+            onClick={ removeFilters }
           >
             <img src={ mealIcon } alt="Ícone comidas" />
           </button>
