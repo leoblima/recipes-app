@@ -1,8 +1,10 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
 const DoneRecipeCard = ({ recipe, index }) => {
+  const [copied, setCopied] = useState(false);
+  const IDTESTONE = `${index}-horizontal-top-text`;
   const { type,
     category,
     name,
@@ -10,16 +12,29 @@ const DoneRecipeCard = ({ recipe, index }) => {
     doneDate,
     tags,
     nationality,
+    id,
     alcoholicOrNot } = recipe;
+
+  const copyUrl = () => {
+    const urlLink = `http://localhost:3000/foods/${id}`;
+    navigator.clipboard.writeText(urlLink);
+    setCopied(true);
+    alert('Link copied!');
+  };
+
   return (
     <section>
       { type === 'food'
-        ? <p data-testid={ `${index}-horizontal-top-text` }>
-          { ` ${nationality} - ${category}` }
+        ? (
+          <p data-testid={ IDTESTONE }>
+            { `${nationality} - ${category}` }
           </p>
-        : <p data-testid={ `${index}-horizontal-top-text` }>
-          { ` ${alcoholicOrNot}` }
-          </p>}
+        )
+        : (
+          <p data-testid={ `${index}-horizontal-top-text` }>
+            { ` ${alcoholicOrNot}` }
+          </p>
+        )}
       <img
         src={ image }
         alt={ `${name}-recipe` }
@@ -29,6 +44,7 @@ const DoneRecipeCard = ({ recipe, index }) => {
       <p data-testid={ `${index}-horizontal-done-date` }>{ doneDate }</p>
       <button
         type="button"
+        onClick={ () => copyUrl() }
       >
         <img
           src={ shareIcon }
@@ -36,6 +52,9 @@ const DoneRecipeCard = ({ recipe, index }) => {
           data-testid={ `${index}-horizontal-share-btn` }
         />
       </button>
+      {
+        copied && <span>Link copied!</span>
+      }
       {
         tags && tags.slice(0, 2).map((tag, position) => (
           <button
