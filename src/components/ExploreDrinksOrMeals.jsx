@@ -7,9 +7,10 @@ const ExploreDrinksOrMeals = ({ type }) => (
     <Link to={ `/explore/${type}/ingredients` }>
       <button type="button" data-testid="explore-by-ingredient">By Ingredient</button>
     </Link>
-    <Link to={ `/explore/${type}/nationalities` }>
-      <button type="button" data-testid="explore-by-nationality">By Nationality</button>
-    </Link>
+    {type === 'foods' ? (
+      <Link to={ `/explore/${type}/nationalities` }>
+        <button type="button" data-testid="explore-by-nationality">By Nationality</button>
+      </Link>) : null }
     <Link to={ `/explore/${type}` }>
       <button type="button" data-testid="explore-by-surprise">Surprise me!</button>
     </Link>

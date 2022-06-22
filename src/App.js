@@ -11,17 +11,14 @@ import Drinks from './pages/Drinks';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
 import NotFound from './pages/NotFound';
+import ExploreByIngredients from './pages/ExploreByIngredients';
 
 function App() {
   return (
     <BrowserRouter>
       <Route exact path="/" component={ Login } />
-      <Route path="/profile" component={ Profile } />
-      <Route exact path="/explore" component={ Explore } />
-      <Route path="/foods" component={ Foods } />
-      <Route path="/drinks" component={ Drinks } />
-      <Route path="/explore/drinks" component={ ExploreDrinks } />
-      <Route path="/explore/foods" component={ ExploreFoods } />
+      <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+      <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/foods" component={ Foods } />
@@ -35,6 +32,16 @@ function App() {
         exact
         path="/explore/drinks/nationalities"
         component={ NotFound }
+      />
+      <Route
+        exact
+        path="/explore/foods/ingredients"
+        component={ ExploreByIngredients }
+      />
+      <Route
+        exact
+        path="/explore/drinks/ingredients"
+        component={ ExploreByIngredients }
       />
     </BrowserRouter>
   );
