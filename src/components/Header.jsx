@@ -60,7 +60,7 @@ function Header() {
 
   return (
     <div>
-      <h3 data-testsid="page-title">{ pageName }</h3>
+      <h3 data-testid="page-title">{ pageName }</h3>
       <button
         type="button"
         data-testid="profile-top-btn"
@@ -71,7 +71,7 @@ function Header() {
       {searchAvailable && (
         <button
           type="button"
-          data-testsid="search-top-btn"
+          data-testid="search-top-btn"
           onClick={ (e) => getSearchBar(e) }
         >
           <img src={ searchIcon } alt="seacrh-icon" />
