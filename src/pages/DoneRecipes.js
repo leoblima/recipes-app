@@ -1,13 +1,14 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import Header from '../components/Header';
 import ButtonsDoneRecipes from '../components/ButtonsDoneRecipes';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 
 const DoneRecipes = () => {
+  const [category, setCategory] = useState('All');
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
   // const doneRecipes = [{
   //   id: 'id-da-receita',
-  //   type: 'meal',
+  //   type: 'drink',
   //   nationality: 'nacionalidade-da-receita-ou-texto-vazio',
   //   category: 'categoria-da-receita-ou-texto-vazio',
   //   alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
@@ -15,14 +16,36 @@ const DoneRecipes = () => {
   //   image: 'imagem-da-receita',
   //   doneDate: 'quando-a-receita-foi-concluida',
   //   tags: ['array-de-tags-da-receita-ou-array-vazio', 2, 'tres', 'quatro'],
-  // }];
+  // },
+  // {
+  //   id: 'id-da-receita2',
+  //   type: 'food',
+  //   nationality: 'nacionalidade-da-receita-ou-texto-vazio2',
+  //   category: 'categoria-da-receita-ou-texto-vazio',
+  //   alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
+  //   name: 'nome-da-receita2',
+  //   image: 'imagem-da-receita2',
+  //   doneDate: 'quando-a-receita-foi-concluida2',
+  //   tags: ['array-de-tags-da-receita-ou-array-vazio', 2, 'tres', 'quatro'],
+  // },
+  // ];
+
+  const getRecipeByType = (recipe) => (recipe.type === category);
+
   return (
     <div>
       <Header />
-      <ButtonsDoneRecipes />
-      {doneRecipes.map((recipe, index) => (
-        <DoneRecipeCard key={ index } recipe={ recipe } index={ index } />
-      ))}
+      <ButtonsDoneRecipes category={ category } setCategory={ setCategory } />
+      {category === 'All' ? (
+        doneRecipes.map((recipe, index) => (
+          <DoneRecipeCard key={ index } recipe={ recipe } index={ index } />
+        ))
+      )
+        : (
+          doneRecipes.filter((recipe) => getRecipeByType(recipe)).map((recipe, index) => (
+            <DoneRecipeCard key={ index } recipe={ recipe } index={ index } />
+          ))
+        )}
 
     </div>
   );
