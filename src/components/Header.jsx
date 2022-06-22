@@ -20,6 +20,7 @@ function Header() {
       setSearchAvailable(true);
       return 'Página inicial de comidas';
     case '/drinks':
+      setSearchAvailable(true);
       return 'Página inicial de bebidas';
     case '/explore':
       return 'Explorar';
