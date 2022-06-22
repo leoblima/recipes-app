@@ -29,6 +29,8 @@ const ContextProvider = ({ children }) => {
   const [nationalitiesData, setNationalitiesData] = useState(['All']);
   const [selectedNationality, setSelectedNationality] = useState('All');
   const [foodsByNationData, setFoodsByNationData] = useState([]);
+  const [foodDetail, setFoodDetail] = useState([]);
+  const [drinkDetail, setDrinkDetail] = useState([]);
 
   const getNationalities = async () => {
     const nationalities = await getNationalitiesData();
@@ -99,6 +101,10 @@ const ContextProvider = ({ children }) => {
     selectedNationality,
     setSelectedNationality,
     foodsByNationData,
+    foodDetail,
+    setFoodDetail,
+    drinkDetail,
+    setDrinkDetail,
   };
 
   return (
