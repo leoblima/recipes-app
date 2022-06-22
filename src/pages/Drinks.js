@@ -13,7 +13,7 @@ const Drinks = () => {
     <div>
       <h2>Drinks</h2>
       <Header />
-      <Categories data={ drinkCategories } />
+      <Categories data={ drinkCategories } type="Drink" />
       <RecipeCard data={ drinksData } type="Drink" />
       <BottomMenu />
     </div>

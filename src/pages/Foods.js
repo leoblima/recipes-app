@@ -12,7 +12,7 @@ const Foods = () => {
     <div>
       <h2>Foods</h2>
       <Header />
-      <Categories data={ foodCategories } />
+      <Categories data={ foodCategories } type="Meal" />
       <RecipeCard data={ foodsData } type="Meal" />
       <BottomMenu />
     </div>

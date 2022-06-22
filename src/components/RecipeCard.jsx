@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Context } from '../context/context';
 
 function RecipeCard({ data, type }) {
+  const { filterByCategory } = useContext(Context);
   const maxRange = 12;
-  const recipes = data.slice(0, maxRange);
+  const recipes = (filterByCategory || data).slice(0, maxRange);
+  const maxChar = 14;
 
   return (
     <section className="recipes">
       { recipes.map((item, index) => (
-        <div
+        <Link
           key={ item[`id${type}`] }
-          data-testid={ `${index}-recipe-card` }
+          to={ (
+            type === 'Meal'
+              ? `/foods/${item[`id${type}`]}` : `/drinks/${item[`id${type}`]}`
+          ) }
         >
-          <div className="card-container">
-            <h4
+          <div
+            data-testid={ `${index}-recipe-card` }
+            className="card-container"
+          >
+            <h6
               data-testid={ `${index}-card-name` }
             >
-              { item[`str${type}`] }
-            </h4>
+              { item[`str${type}`].substring(0, maxChar) }
+            </h6>
             <img
               src={ item[`str${type}Thumb`] }
               alt={ item[`str${type}`] }
@@ -25,7 +35,7 @@ function RecipeCard({ data, type }) {
               className="recipes-img"
             />
           </div>
-        </div>
+        </Link>
       ))}
     </section>
   );
