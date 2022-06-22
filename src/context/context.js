@@ -1,7 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getFoodRecipes, getFoodCategories } from '../services/FoodData';
-import { getDrinkRecipes, getDrinkCategories } from '../services/DrinkData';
+import {
+  getFoodRecipes,
+  getFoodCategories,
+  getFoodByCategories } from '../services/FoodData';
+import {
+  getDrinkRecipes,
+  getDrinkCategories,
+  getDrinkByCategories } from '../services/DrinkData';
 import {
   getNationalitiesData,
   getFoodsByNationData,
@@ -18,6 +24,8 @@ const ContextProvider = ({ children }) => {
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinksData, setDrinksData] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
+  const [filterByCategory, setFilterByCategory] = useState(null);
+  const [usedFilter, setUsedFilter] = useState('');
   const [nationalitiesData, setNationalitiesData] = useState(['All']);
   const [selectedNationality, setSelectedNationality] = useState('All');
   const [foodsByNationData, setFoodsByNationData] = useState([]);
@@ -46,6 +54,17 @@ const ContextProvider = ({ children }) => {
     setDrinkCategories(drinks);
   };
 
+  const getByCategories = async (category, type) => {
+    if (type === 'Meal') {
+      const foods = await getFoodByCategories(category);
+      setFilterByCategory(foods);
+    }
+    if (type === 'Drink') {
+      const drinks = await getDrinkByCategories(category);
+      setFilterByCategory(drinks);
+    }
+  };
+
   useEffect(() => {
     getData();
     getCategories();
@@ -71,6 +90,11 @@ const ContextProvider = ({ children }) => {
     foodCategories,
     drinksData,
     drinkCategories,
+    getByCategories,
+    filterByCategory,
+    setFilterByCategory,
+    usedFilter,
+    setUsedFilter,
     nationalitiesData,
     selectedNationality,
     setSelectedNationality,
