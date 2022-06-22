@@ -8,18 +8,37 @@ import {
   getDrinkRecipes,
   getDrinkCategories,
   getDrinkByCategories } from '../services/DrinkData';
+import {
+  getNationalitiesData,
+  getFoodsByNationData,
+} from '../services/NationalitiesData';
 
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [filteredFoods, setFilteredFoods] = useState([]);
+  const [filteredDrinks, setFilteredDrinks] = useState([]);
   const [foodsData, setFoodsData] = useState([]);
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinksData, setDrinksData] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [filterByCategory, setFilterByCategory] = useState(null);
   const [usedFilter, setUsedFilter] = useState('');
+  const [nationalitiesData, setNationalitiesData] = useState(['All']);
+  const [selectedNationality, setSelectedNationality] = useState('All');
+  const [foodsByNationData, setFoodsByNationData] = useState([]);
+
+  const getNationalities = async () => {
+    const nationalities = await getNationalitiesData();
+    setNationalitiesData([...nationalitiesData, ...nationalities]);
+  };
+
+  const getFoodsByNation = async () => {
+    const foodsByNation = await getFoodsByNationData(selectedNationality);
+    setFoodsByNationData(foodsByNation);
+  };
 
   const getData = async () => {
     const foods = await getFoodRecipes();
@@ -49,13 +68,24 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     getData();
     getCategories();
+    getNationalities();
   }, []);
+
+  useEffect(() => {
+    if (selectedNationality !== 'All') {
+      getFoodsByNation();
+    }
+  }, [selectedNationality]);
 
   const initialState = {
     email,
     setEmail,
     password,
     setPassword,
+    filteredFoods,
+    setFilteredFoods,
+    filteredDrinks,
+    setFilteredDrinks,
     foodsData,
     foodCategories,
     drinksData,
@@ -65,6 +95,10 @@ const ContextProvider = ({ children }) => {
     setFilterByCategory,
     usedFilter,
     setUsedFilter,
+    nationalitiesData,
+    selectedNationality,
+    setSelectedNationality,
+    foodsByNationData,
   };
 
   return (
