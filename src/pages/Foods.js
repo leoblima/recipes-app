@@ -7,13 +7,14 @@ import Categories from '../components/Categories';
 import './Items.css';
 
 const Foods = () => {
-  const { foodsData, foodCategories } = useContext(Context);
+  const { foodsData, foodCategories, filteredFoods } = useContext(Context);
   return (
     <div>
       <h2>Foods</h2>
       <Header />
       <Categories data={ foodCategories } />
-      <RecipeCard data={ foodsData } type="Meal" />
+      { filteredFoods.length === 0
+        && <RecipeCard data={ foodsData } type="Meal" />}
       <BottomMenu />
     </div>
 

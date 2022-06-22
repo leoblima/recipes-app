@@ -5,11 +5,6 @@ const maxLength = 12;
 
 const FilteredFoods = ({ filteredItems }) => {
   const [filteredLength] = useState(filteredItems.slice(0, maxLength));
-  // const [twelveFoods, setTwelveFoods] = useState([]);
-
-  // useEffect(() => {
-  //   console.log(filteredItems);
-  // }, []);
   return (
     <div className=" d-flex flex-column text-center">
       { filteredLength.map((currentItem, index) => (
