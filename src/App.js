@@ -9,6 +9,7 @@ import ExploreByNationalities from './pages/ExploreByNationalities';
 import Login from './pages/Login';
 import Drinks from './pages/Drinks';
 import NotFound from './pages/NotFound';
+import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
   return (
@@ -27,6 +28,11 @@ function App() {
         exact
         path="/explore/drinks/nationalities"
         component={ NotFound }
+      />
+      <Route
+        exact
+        path="/done-recipes"
+        component={ DoneRecipes }
       />
     </BrowserRouter>
   );
