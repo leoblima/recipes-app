@@ -13,6 +13,7 @@ import ExploreDrinks from './pages/ExploreDrinks';
 import NotFound from './pages/NotFound';
 import DoneRecipes from './pages/DoneRecipes';
 import ExploreByIngredients from './pages/ExploreByIngredients';
+import Favorite from './pages/Favorite';
 import FoodDetail from './pages/FoodDetail';
 import DrinkDetail from './pages/DrinkDetail';
 
@@ -47,6 +48,11 @@ function App() {
         exact
         path="/explore/drinks/ingredients"
         component={ ExploreByIngredients }
+      />
+      <Route
+        exact
+        path="/favorite-recipes"
+        component={ Favorite }
       />
     </BrowserRouter>
   );

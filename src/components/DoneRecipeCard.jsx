@@ -2,9 +2,10 @@ import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import '../pages/Items.css';
 
-const DoneRecipeCard = ({ recipe, index }) => {
+const DoneRecipeCard = ({ recipe, index, favBtn }) => {
   const history = useHistory();
   const [copied, setCopied] = useState(false);
   const IDTESTONE = `${index}-horizontal-top-text`;
@@ -58,13 +59,6 @@ const DoneRecipeCard = ({ recipe, index }) => {
           className="recipes-img"
         />
       </button>
-      {/* <img
-        src={ image }
-        alt={ `${name}-recipe` }
-        onClick={ () => handleClick() }
-        onKeyDown={ () => console.log() }
-        tabIndex={ index }
-      /> */}
       <span
         role="button"
         data-testid={ `${index}-horizontal-name` }
@@ -97,7 +91,16 @@ const DoneRecipeCard = ({ recipe, index }) => {
           >
             { tag }
           </button>))
-
+      }
+      {
+        favBtn && (
+          <button type="button">
+            <img
+              src={ blackHeartIcon }
+              alt="favorite-heart"
+              data-testid={ `${index}-horizontal-favorite-btn` }
+            />
+          </button>)
       }
     </section>
   );
@@ -105,6 +108,7 @@ const DoneRecipeCard = ({ recipe, index }) => {
 DoneRecipeCard.propTypes = {
   recipe: PropTypes.objectOf(PropTypes.any).isRequired,
   index: PropTypes.number.isRequired,
+  favBtn: PropTypes.bool.isRequired,
 };
 
 export default DoneRecipeCard;
