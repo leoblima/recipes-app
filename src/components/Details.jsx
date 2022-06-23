@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
@@ -6,6 +6,8 @@ import copy from 'clipboard-copy';
 const Detail = ({
   image, title, category, instructions, video, ingredients, measure, id,
 }) => {
+  const [copiedUrl, setCopiedUrl] = useState('');
+
   const history = useHistory();
   const location = useLocation();
 
@@ -15,7 +17,8 @@ const Detail = ({
   };
 
   const copyUrlToShare = () => {
-    copy(`http://localhost:3000${location.pathname}`);
+    const url = copy(`http://localhost:3000${location.pathname}`);
+    setCopiedUrl(url);
   };
 
   return (
@@ -33,6 +36,7 @@ const Detail = ({
         </p>
       </div>
       <div>
+        { copiedUrl !== '' ? <span>Link copied!</span> : ''}
         <button
           type="button"
           data-testid="share-btn"
