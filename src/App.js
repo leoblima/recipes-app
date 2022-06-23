@@ -51,6 +51,11 @@ function App() {
       />
       <Route
         exact
+        path="/explore/foods/ingredients"
+        component={ ExploreByIngredients }
+      />
+      <Route
+        exact
         path="/favorite-recipes"
         component={ Favorite }
       />

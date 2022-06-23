@@ -21,7 +21,7 @@ function ExploreDrinksOrMeals({ type }) {
           setRandomRecipeId(response.drinks[0].idDrink);
         });
     }
-  });
+  }, []);
 
   return (
     <div>

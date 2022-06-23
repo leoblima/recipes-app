@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
@@ -22,10 +22,6 @@ const Detail = ({
     copy(`http://localhost:3000${location.pathname}`);
     setCopiedUrl('Link copied!');
   };
-
-  useEffect(() => {
-    console.log(JSON.parse(localStorage.getItem('favoriteRecipes')));
-  }, []);
 
   const handleLocalStorage = () => {
     const currentPage = location.pathname.split('/')[1];
