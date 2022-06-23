@@ -12,6 +12,7 @@ import {
   getNationalitiesData,
   getFoodsByNationData,
 } from '../services/NationalitiesData';
+import getIngredients from '../services/IngredientsData';
 
 export const Context = createContext();
 
@@ -29,6 +30,16 @@ const ContextProvider = ({ children }) => {
   const [nationalitiesData, setNationalitiesData] = useState(['All']);
   const [selectedNationality, setSelectedNationality] = useState('All');
   const [foodsByNationData, setFoodsByNationData] = useState([]);
+  const [mealsIngredientsData, setMealsIngredientsData] = useState([]);
+  const [drinksIngredientsData, setDrinksIngredientsData] = useState([]);
+  const [selectedIngredient, setSelectedIngredient] = useState([]);
+
+  const getIngredientsData = async () => {
+    const mealsIngredients = await getIngredients('meal');
+    const drinksIngredients = await getIngredients('cocktail');
+    setMealsIngredientsData(mealsIngredients);
+    setDrinksIngredientsData(drinksIngredients);
+  };
 
   const getNationalities = async () => {
     const nationalities = await getNationalitiesData();
@@ -69,6 +80,7 @@ const ContextProvider = ({ children }) => {
     getData();
     getCategories();
     getNationalities();
+    getIngredientsData();
   }, []);
 
   useEffect(() => {
@@ -99,6 +111,10 @@ const ContextProvider = ({ children }) => {
     selectedNationality,
     setSelectedNationality,
     foodsByNationData,
+    mealsIngredientsData,
+    drinksIngredientsData,
+    selectedIngredient,
+    setSelectedIngredient,
   };
 
   return (
