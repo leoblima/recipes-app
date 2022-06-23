@@ -36,12 +36,14 @@ function Favorite() {
   // }, []);
 
   useEffect(() => {
-    const newList = JSON.stringify(
-      doneRecipes.filter((recipe) => recipe.id !== updatedList),
-    );
-    localStorage.setItem('favoriteRecipes', newList);
-    doneRecipes = JSON.parse(newList);
-    setUpdatedList('');
+    if (doneRecipes) {
+      const newList = JSON.stringify(
+        doneRecipes.filter((recipe) => recipe.id !== updatedList),
+      );
+      localStorage.setItem('favoriteRecipes', newList);
+      doneRecipes = JSON.parse(newList);
+      setUpdatedList('');
+    }
   }, [updatedList]);
 
   const getRecipeByType = (recipe) => (recipe.type === category);
