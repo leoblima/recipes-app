@@ -1,7 +1,16 @@
+.login-main {
+  display: flex;
+  height: 300px;
+  margin: auto;
+  margin-top: 50%;
+  max-width: 300px;
+}
+
 .login {
   margin: auto;
 }
 
-.login-main {
-  display: flex;
+button {
+  max-width: 100px;
+  transform: translate(45%, 25%);
 }

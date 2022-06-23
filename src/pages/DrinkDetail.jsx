@@ -24,7 +24,7 @@ const DrinkDetail = () => {
 
   useEffect(() => {
     setObjectEntries(Object.entries(drinkDetail));
-  }, [drinkDetail]);
+  }, []);
 
   useEffect(() => {
     if (objectEntries.length > 0) {

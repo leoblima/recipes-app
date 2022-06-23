@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
+import './Details.css';
 
 const Detail = ({
   image, title, category, instructions, video, ingredients, measure, id,

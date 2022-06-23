@@ -1,0 +1,14 @@
+img {
+  filter: drop-shadow(7px 5px 5px #949494);
+  padding: 10px;
+  transition: 0.3s;
+}
+
+button {
+  margin-bottom: 20px;
+  width: 180px;
+}
+
+p {
+  font-weight: 450;
+}
