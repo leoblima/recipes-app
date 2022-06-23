@@ -5,6 +5,7 @@ import DoneRecipeCard from '../components/DoneRecipeCard';
 
 const DoneRecipes = () => {
   const [category, setCategory] = useState('All');
+  const [isEnable, setIsEnable] = useState(false);
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
   // const doneRecipes = [{
   //   id: 'id-da-receita',
@@ -29,6 +30,14 @@ const DoneRecipes = () => {
   //   tags: ['array-de-tags-da-receita-ou-array-vazio', 2, 'tres', 'quatro'],
   // },
   // ];
+  const renderRecipes = (recipe, index) => (
+    <DoneRecipeCard
+      key={ index }
+      recipe={ recipe }
+      index={ index }
+      favBtn={ isEnable }
+      setIsEnable={ setIsEnable }
+    />);
 
   const getRecipeByType = (recipe) => (recipe.type === category);
 
@@ -38,12 +47,12 @@ const DoneRecipes = () => {
       <ButtonsDoneRecipes category={ category } setCategory={ setCategory } />
       {category === 'All' ? (
         doneRecipes.map((recipe, index) => (
-          <DoneRecipeCard key={ index } recipe={ recipe } index={ index } />
+          renderRecipes(recipe, index)
         ))
       )
         : (
           doneRecipes.filter((recipe) => getRecipeByType(recipe)).map((recipe, index) => (
-            <DoneRecipeCard key={ index } recipe={ recipe } index={ index } />
+            renderRecipes(recipe, index)
           ))
         )}
 

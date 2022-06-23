@@ -14,6 +14,8 @@ import NotFound from './pages/NotFound';
 import DoneRecipes from './pages/DoneRecipes';
 import ExploreByIngredients from './pages/ExploreByIngredients';
 import Favorite from './pages/Favorite';
+import FoodDetail from './pages/FoodDetail';
+import DrinkDetail from './pages/DrinkDetail';
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/foods" component={ Foods } />
+      <Route path="/foods/:id" component={ FoodDetail } />
       <Route exact path="/drinks" component={ Drinks } />
+      <Route path="/drinks/:id" component={ DrinkDetail } />
       <Route
         exact
         path="/explore/foods/nationalities"
