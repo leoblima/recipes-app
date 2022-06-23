@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
+import saveLocalStorage from '../services/saveLocalStorage';
 
 const Detail = ({
-  image, title, category, instructions, video, ingredients, measure, id,
+  image, title, category, instructions, video,
+  ingredients, measure, id, nationality, alcoholic,
 }) => {
   const history = useHistory();
   const location = useLocation();
+
+  const [copiedUrl, setCopiedUrl] = useState('');
 
   const handleRedirectToProgress = () => {
     const path = location.pathname.split('/')[1];
@@ -16,6 +20,25 @@ const Detail = ({
 
   const copyUrlToShare = () => {
     copy(`http://localhost:3000${location.pathname}`);
+    setCopiedUrl('Link copied!');
+  };
+
+  useEffect(() => {
+    console.log(JSON.parse(localStorage.getItem('favoriteRecipes')));
+  }, []);
+
+  const handleLocalStorage = () => {
+    const currentPage = location.pathname.split('/')[1];
+    const item = {
+      id,
+      type: currentPage === 'foods' ? 'food' : 'drink',
+      nationality: currentPage === 'foods' ? nationality : '',
+      category,
+      alcoholicOrNot: currentPage === 'drinks' ? alcoholic : '',
+      name: title,
+      image,
+    };
+    saveLocalStorage(item);
   };
 
   return (
@@ -30,9 +53,11 @@ const Detail = ({
         <h3 data-testid="recipe-title">{ title }</h3>
         <p data-testid="recipe-category">
           { category }
+          { alcoholic }
         </p>
       </div>
       <div>
+        <span>{ copiedUrl !== '' ? copiedUrl : '' }</span>
         <button
           type="button"
           data-testid="share-btn"
@@ -41,7 +66,12 @@ const Detail = ({
         >
           Compartilhar
         </button>
-        <button type="button" data-testid="favorite-btn" className="btn btn-warning">
+        <button
+          type="button"
+          data-testid="favorite-btn"
+          className="btn btn-warning"
+          onClick={ handleLocalStorage }
+        >
           Favoritar
         </button>
       </div>
@@ -96,4 +126,6 @@ Detail.propTypes = {
   ingredients: PropTypes.arrayOf.isRequired,
   measure: PropTypes.arrayOf.isRequired,
   id: PropTypes.string.isRequired,
+  nationality: PropTypes.string.isRequired,
+  alcoholic: PropTypes.string.isRequired,
 };
