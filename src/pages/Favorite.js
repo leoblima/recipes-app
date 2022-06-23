@@ -3,12 +3,10 @@ import Header from '../components/Header';
 import ButtonsDoneRecipes from '../components/ButtonsDoneRecipes';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 
-const DoneRecipes = () => {
+function Favorite() {
   const [category, setCategory] = useState('All');
-  const [isEnable, setIsEnable] = useState(false);
-  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) === undefined
-    ? []
-    : JSON.parse(localStorage.getItem('doneRecipes'));
+  const [isEnable, setIsEnable] = useState(true);
+  const doneRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
   // const doneRecipes = [{
   //   id: 'id-da-receita',
   //   type: 'drink',
@@ -32,6 +30,8 @@ const DoneRecipes = () => {
   //   tags: ['array-de-tags-da-receita-ou-array-vazio', 2, 'tres', 'quatro'],
   // },
   // ];
+  const getRecipeByType = (recipe) => (recipe.type === category);
+
   const renderRecipes = (recipe, index) => (
     <DoneRecipeCard
       key={ index }
@@ -48,8 +48,6 @@ const DoneRecipes = () => {
     }
   };
 
-  const getRecipeByType = (recipe) => (recipe.type === category);
-
   return (
     <div>
       <Header />
@@ -62,9 +60,8 @@ const DoneRecipes = () => {
             renderRecipes(recipe, index)
           ))
         )}
-
     </div>
   );
-};
+}
 
-export default DoneRecipes;
+export default Favorite;
