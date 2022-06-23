@@ -48,6 +48,11 @@ function App() {
         path="/explore/drinks/ingredients"
         component={ ExploreByIngredients }
       />
+      <Route
+        exact
+        path="/explore/foods/ingredients"
+        component={ ExploreByIngredients }
+      />
     </BrowserRouter>
   );
 }

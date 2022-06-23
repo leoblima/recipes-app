@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../context/context';
-import { fetchDrinkApiByFilter, fetchFoodApiByFilter } from '../hooks/fetchApi';
+// import { fetchDrinkApiByFilter, fetchFoodApiByFilter } from '../hooks/fetchApi';
 
 const MEALS_INGREDIENTS_IMG_ENDPOINT = 'https://www.themealdb.com/images/ingredients/';
 const DRINKS_INGREDIENTS_IMG_ENDPOINT = 'https://www.thecocktaildb.com/images/ingredients/';
@@ -22,25 +22,10 @@ const getIngredientsImg = (ingredientName, type) => {
 export default function IngredientCard() {
   let ingredientImgArr = [];
   const { location: { pathname } } = useHistory();
-  const { mealsIngredientsData, drinksIngredientsData,
-    setFilteredFoods, setFilteredDrinks } = useContext(Context);
-
-  const searchByIngredientName = async (ingredientName) => {
-    if (pathname.includes('foods')) {
-      const urlToFetch = await fetchFoodApiByFilter('ingredient', ingredientName);
-      const fetched = await fetch(urlToFetch);
-      const data = await fetched.json();
-      setFilteredFoods(data.meals || ['erro']);
-    } else {
-      const urlToFetch = await fetchDrinkApiByFilter('ingredient', ingredientName);
-      const fetched = await fetch(urlToFetch);
-      const data = await fetched.json();
-      setFilteredDrinks(data.drinks || ['erro']);
-    }
-  };
+  const { mealsIngredientsData, drinksIngredientsData } = useContext(Context);
 
   const handleClick = (ingredientName) => {
-    searchByIngredientName(ingredientName);
+    console.log(ingredientName);
   };
 
   const maxRange = 12;
