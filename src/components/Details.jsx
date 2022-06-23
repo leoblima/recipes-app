@@ -1,12 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory, useLocation } from 'react-router-dom';
+import copy from 'clipboard-copy';
 
 const Detail = ({
-  image, title, category, instructions, video, ingredients, measure,
+  image, title, category, instructions, video, ingredients, measure, id,
 }) => {
-  useEffect(() => {
+  const history = useHistory();
+  const location = useLocation();
 
-  }, []);
+  const handleRedirectToProgress = () => {
+    const path = location.pathname.split('/')[1];
+    history.push(`/${path}/${id}/in-progress`);
+  };
+
+  const copyUrlToShare = () => {
+    copy(`http://localhost:3000${location.pathname}`);
+  };
 
   return (
     <div className="container d-flex flex-column text-center">
@@ -23,8 +33,17 @@ const Detail = ({
         </p>
       </div>
       <div>
-        <button type="button" data-testid="share-btn">Compartilhar</button>
-        <button type="button" data-testid="favorite-btn">Favoritar</button>
+        <button
+          type="button"
+          data-testid="share-btn"
+          className="btn btn-primary mr-3"
+          onClick={ copyUrlToShare }
+        >
+          Compartilhar
+        </button>
+        <button type="button" data-testid="favorite-btn" className="btn btn-warning">
+          Favoritar
+        </button>
       </div>
       <div>
         { ingredients.map((ingredient, index) => (
@@ -53,7 +72,14 @@ const Detail = ({
         </p>
       </div>
       <div>
-        <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="fixed-bottom"
+          onClick={ handleRedirectToProgress }
+        >
+          Iniciar Receita
+        </button>
       </div>
     </div>
   );
@@ -69,4 +95,5 @@ Detail.propTypes = {
   video: PropTypes.string.isRequired,
   ingredients: PropTypes.arrayOf.isRequired,
   measure: PropTypes.arrayOf.isRequired,
+  id: PropTypes.string.isRequired,
 };

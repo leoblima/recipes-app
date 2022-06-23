@@ -49,6 +49,7 @@ const DrinkDetail = () => {
 
       { currentDrink
       && <Detail
+        id={ params.id }
         image={ currentDrink.strDrinkThumb }
         title={ currentDrink.strDrink }
         category={ currentDrink.strAlcoholic }

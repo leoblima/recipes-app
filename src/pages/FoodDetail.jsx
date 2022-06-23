@@ -50,6 +50,7 @@ const FoodDetail = () => {
 
       { currentFood
       && <Detail
+        id={ params.id }
         image={ currentFood.strMealThumb }
         title={ currentFood.strMeal }
         category={ currentFood.strCategory }
