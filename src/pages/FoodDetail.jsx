@@ -58,6 +58,7 @@ const FoodDetail = () => {
         ingredients={ ingredients }
         measure={ measure }
         video={ currentFood.strYoutube }
+        nationality={ foodDetail.strArea }
       /> }
     </>
   );
