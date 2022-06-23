@@ -6,7 +6,9 @@ import DoneRecipeCard from '../components/DoneRecipeCard';
 const DoneRecipes = () => {
   const [category, setCategory] = useState('All');
   const [isEnable, setIsEnable] = useState(false);
-  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) === undefined
+    ? []
+    : JSON.parse(localStorage.getItem('doneRecipes'));
   // const doneRecipes = [{
   //   id: 'id-da-receita',
   //   type: 'drink',
@@ -39,6 +41,13 @@ const DoneRecipes = () => {
       setIsEnable={ setIsEnable }
     />);
 
+  const renderDoneRecipes = () => {
+    if (doneRecipes) {
+      return doneRecipes.map((recipe, index) => (
+        renderRecipes(recipe, index)));
+    }
+  };
+
   const getRecipeByType = (recipe) => (recipe.type === category);
 
   return (
@@ -46,9 +55,7 @@ const DoneRecipes = () => {
       <Header />
       <ButtonsDoneRecipes category={ category } setCategory={ setCategory } />
       {category === 'All' ? (
-        doneRecipes.map((recipe, index) => (
-          renderRecipes(recipe, index)
-        ))
+        renderDoneRecipes()
       )
         : (
           doneRecipes.filter((recipe) => getRecipeByType(recipe)).map((recipe, index) => (

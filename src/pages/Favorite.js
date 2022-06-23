@@ -41,14 +41,19 @@ function Favorite() {
       setIsEnable={ setIsEnable }
     />);
 
+  const renderDoneRecipes = () => {
+    if (doneRecipes) {
+      return doneRecipes.map((recipe, index) => (
+        renderRecipes(recipe, index)));
+    }
+  };
+
   return (
     <div>
       <Header />
       <ButtonsDoneRecipes category={ category } setCategory={ setCategory } />
       {category === 'All' ? (
-        doneRecipes.map((recipe, index) => (
-          renderRecipes(recipe, index)
-        ))
+        renderDoneRecipes()
       )
         : (
           doneRecipes.filter((recipe) => getRecipeByType(recipe)).map((recipe, index) => (

@@ -24,6 +24,7 @@ const DoneRecipeCard = ({ recipe, index, favBtn }) => {
     navigator.clipboard.writeText(urlLink);
     setCopied(true);
   };
+
   const handleClick = () => {
     if (type === 'food') {
       history.push(`/foods/${id}`);
