@@ -5,7 +5,7 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import '../pages/Items.css';
 
-const DoneRecipeCard = ({ recipe, index, favBtn }) => {
+const DoneRecipeCard = ({ recipe, index, favBtn, setUpdatedList }) => {
   const history = useHistory();
   const [copied, setCopied] = useState(false);
   const IDTESTONE = `${index}-horizontal-top-text`;
@@ -31,6 +31,10 @@ const DoneRecipeCard = ({ recipe, index, favBtn }) => {
     } else {
       history.push(`/drinks/${id}`);
     }
+  };
+
+  const unfavoriteRecipe = () => {
+    setUpdatedList(id);
   };
 
   return (
@@ -95,7 +99,7 @@ const DoneRecipeCard = ({ recipe, index, favBtn }) => {
       }
       {
         favBtn && (
-          <button type="button">
+          <button type="button" onClick={ () => unfavoriteRecipe() }>
             <img
               src={ blackHeartIcon }
               alt="favorite-heart"
@@ -110,6 +114,7 @@ DoneRecipeCard.propTypes = {
   recipe: PropTypes.objectOf(PropTypes.any).isRequired,
   index: PropTypes.number.isRequired,
   favBtn: PropTypes.bool.isRequired,
+  setUpdatedList: PropTypes.func.isRequired,
 };
 
 export default DoneRecipeCard;
