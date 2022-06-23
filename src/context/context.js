@@ -40,6 +40,8 @@ const ContextProvider = ({ children }) => {
     setMealsIngredientsData(mealsIngredients);
     setDrinksIngredientsData(drinksIngredients);
   };
+  const [foodDetail, setFoodDetail] = useState([]);
+  const [drinkDetail, setDrinkDetail] = useState([]);
 
   const getNationalities = async () => {
     const nationalities = await getNationalitiesData();
@@ -115,6 +117,10 @@ const ContextProvider = ({ children }) => {
     drinksIngredientsData,
     selectedIngredient,
     setSelectedIngredient,
+    foodDetail,
+    setFoodDetail,
+    drinkDetail,
+    setDrinkDetail,
   };
 
   return (
