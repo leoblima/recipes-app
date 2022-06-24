@@ -26,19 +26,33 @@ const Detail = ({
     setCopiedUrl('Link copied!');
   };
 
+  const sendToLocalStorage = () => {
+    const currentPage = location.pathname.split('/')[1];
+    const item = {
+      id,
+      type: currentPage === 'foods' ? 'food' : 'drink',
+      nationality: currentPage === 'foods' ? nationality : '',
+      category,
+      alcoholicOrNot: currentPage === 'drinks' ? alcoholic : '',
+      name: title,
+      image,
+    };
+    saveLocalStorage(item);
+  };
+
+  const deleteFromLocalStorage = () => {
+    const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (getFavorites) {
+      const newFavArr = getFavorites.filter((recipe) => recipe.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavArr));
+    }
+  };
+
   const handleLocalStorage = () => {
     if (!isFavorite) {
-      const currentPage = location.pathname.split('/')[1];
-      const item = {
-        id,
-        type: currentPage === 'foods' ? 'food' : 'drink',
-        nationality: currentPage === 'foods' ? nationality : '',
-        category,
-        alcoholicOrNot: currentPage === 'drinks' ? alcoholic : '',
-        name: title,
-        image,
-      };
-      saveLocalStorage(item);
+      sendToLocalStorage();
+    } else {
+      deleteFromLocalStorage();
     }
     setIsFavorite(!isFavorite);
   };
