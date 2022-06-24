@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import saveLocalStorage from '../services/saveLocalStorage';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 const Detail = ({
   image, title, category, instructions, video,
@@ -12,6 +14,7 @@ const Detail = ({
   const location = useLocation();
 
   const [copiedUrl, setCopiedUrl] = useState('');
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleRedirectToProgress = () => {
     const path = location.pathname.split('/')[1];
@@ -24,18 +27,33 @@ const Detail = ({
   };
 
   const handleLocalStorage = () => {
-    const currentPage = location.pathname.split('/')[1];
-    const item = {
-      id,
-      type: currentPage === 'foods' ? 'food' : 'drink',
-      nationality: currentPage === 'foods' ? nationality : '',
-      category,
-      alcoholicOrNot: currentPage === 'drinks' ? alcoholic : '',
-      name: title,
-      image,
-    };
-    saveLocalStorage(item);
+    if (!isFavorite) {
+      const currentPage = location.pathname.split('/')[1];
+      const item = {
+        id,
+        type: currentPage === 'foods' ? 'food' : 'drink',
+        nationality: currentPage === 'foods' ? nationality : '',
+        category,
+        alcoholicOrNot: currentPage === 'drinks' ? alcoholic : '',
+        name: title,
+        image,
+      };
+      saveLocalStorage(item);
+    }
+    setIsFavorite(!isFavorite);
   };
+
+  const checkIsFavorite = () => {
+    const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (getFavorites) {
+      const isPresent = getFavorites.some((recipe) => recipe.id === id);
+      setIsFavorite(isPresent);
+    }
+  };
+
+  useEffect(() => {
+    checkIsFavorite();
+  }, [isFavorite]);
 
   return (
     <div className="container d-flex flex-column text-center">
@@ -64,11 +82,14 @@ const Detail = ({
         </button>
         <button
           type="button"
-          data-testid="favorite-btn"
           className="btn btn-warning"
           onClick={ handleLocalStorage }
         >
-          Favoritar
+          <img
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt="favorite-Status-Heart"
+            data-testid="favorite-btn"
+          />
         </button>
       </div>
       <div>
