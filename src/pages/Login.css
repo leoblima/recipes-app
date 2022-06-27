@@ -1,16 +1,12 @@
-.login-main {
+.login-main{
+  align-content: center;
+  align-items: center;
   display: flex;
-  height: 300px;
-  margin: auto;
+  flex-direction: column;
   margin-top: 50%;
-  max-width: 300px;
 }
 
-.login {
-  margin: auto;
-}
-
-button {
-  max-width: 100px;
-  transform: translate(45%, 25%);
+.login-btn {
+  margin-left: 24%;
+  width: 100px;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import './ExploreDrinksOrMeals.css';
 
 const RANDOM_MEAL_URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
 const RANDOM_DRINK_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
@@ -24,15 +25,23 @@ function ExploreDrinksOrMeals({ type }) {
   }, []);
 
   return (
-    <div>
+    <div className="explore-drinks-or-meals">
       <Link to={ `/explore/${type}/ingredients` }>
-        <button type="button" data-testid="explore-by-ingredient">By Ingredient</button>
+        <button
+          type="button"
+          data-testid="explore-by-ingredient"
+          className="btn-explore-foods btn btn-dark"
+        >
+          By Ingredient
+
+        </button>
       </Link>
       {type === 'foods' ? (
         <Link to={ `/explore/${type}/nationalities` }>
           <button
             type="button"
             data-testid="explore-by-nationality"
+            className="btn-explore-foods btn btn-dark"
           >
             By Nationality
           </button>
@@ -41,6 +50,7 @@ function ExploreDrinksOrMeals({ type }) {
         <button
           type="button"
           data-testid="explore-surprise"
+          className="btn-explore-foods btn btn-dark"
         >
           Surprise me!
         </button>

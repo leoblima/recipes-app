@@ -37,7 +37,7 @@ const Categories = ({ data, type }) => {
           key={ item.strCategory }
           data-testid={ [`${item.strCategory}-category-filter`] }
           onClick={ () => filterBtn(item.strCategory) }
-          className="btn btn-primary"
+          className="nav-button btn-primary"
         >
           { item.strCategory }
         </button>
@@ -46,7 +46,7 @@ const Categories = ({ data, type }) => {
         type="button"
         onClick={ removeFilters }
         data-testid="All-category-filter"
-        className="btn btn-primary"
+        className="nav-button btn-primary"
       >
         All
       </button>

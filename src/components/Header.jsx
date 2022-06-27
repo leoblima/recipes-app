@@ -61,7 +61,7 @@ function Header() {
   }, [history]);
 
   return (
-    <div>
+    <div className="header">
       <h3 data-testid="page-title">{ pageName }</h3>
       <button
         type="button"

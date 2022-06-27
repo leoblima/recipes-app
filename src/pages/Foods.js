@@ -10,7 +10,6 @@ const Foods = () => {
   const { foodsData, foodCategories, filteredFoods } = useContext(Context);
   return (
     <div>
-      <h2>Foods</h2>
       <Header />
       <Categories data={ foodCategories } type="Meal" />
       { filteredFoods.length === 0

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../context/context';
 // import { fetchDrinkApiByFilter, fetchFoodApiByFilter } from '../hooks/fetchApi';
+import '../pages/Items.css';
 
 const MEALS_INGREDIENTS_IMG_ENDPOINT = 'https://www.themealdb.com/images/ingredients/';
 const DRINKS_INGREDIENTS_IMG_ENDPOINT = 'https://www.thecocktaildb.com/images/ingredients/';
@@ -47,6 +48,7 @@ export default function IngredientCard() {
                   data-testid={ `${index}-card-img` }
                   src={ ingredientImgArr[index] }
                   alt={ ingredient.strIngredient1 }
+                  className="recipes-img"
                 />
                 <div
                   data-testid={ `${index}-card-name` }

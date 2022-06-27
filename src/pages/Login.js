@@ -75,7 +75,7 @@ function Login() {
           data-testid="login-submit-btn"
           disabled={ disabled }
           onClick={ handleSubmit }
-          className="btn btn-success"
+          className="login-btn btn btn-success"
         >
           Enter
         </button>

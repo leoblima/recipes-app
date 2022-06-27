@@ -4,11 +4,15 @@ img {
   transition: 0.3s;
 }
 
-button {
-  margin-bottom: 20px;
-  width: 180px;
+.details-btn-footer {
+  max-width: 100%;
 }
 
 p {
   font-weight: 450;
+  margin-top: 20px;
+}
+
+.details-btn {
+  width: 150px;
 }

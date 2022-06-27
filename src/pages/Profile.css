@@ -1,0 +1,11 @@
+.profile-items {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.profile-btn {
+  margin: 10px;
+  width: 150px;
+}

@@ -1,5 +1,6 @@
 import { React, useContext } from 'react';
 import { Context } from '../context/context';
+import './NationalitiesDropdown.css';
 
 const NationalitiesDropdown = () => {
   const {
@@ -13,7 +14,7 @@ const NationalitiesDropdown = () => {
   };
 
   return (
-    <div>
+    <div className="nationality-dropdown">
       <select
         name="nationality-dropdown"
         id="nationality-dropdown"
