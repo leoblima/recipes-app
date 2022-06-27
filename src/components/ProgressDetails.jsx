@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import saveLocalStorage from '../services/saveLocalStorage';
 
@@ -8,25 +8,18 @@ const ProgressDetails = ({
   image, title, category, instructions,
   ingredients, measure, id, nationality, alcoholic,
 }) => {
-  // const history = useHistory();
-  ingredients.forEach((ingredient) => console.log(ingredient[1]));
-
-  const location = useLocation();
+  const { location: { pathname } } = useHistory();
 
   const [copiedUrl, setCopiedUrl] = useState('');
-
-  // const handleRedirectToDone = () => {
-  //   const path = location.pathname.split('/')[1];
-  //   history.push(`/${path}/${id}/in-progress`);
-  // };
+  let [checkedIngredient] = useState([]);
 
   const copyUrlToShare = () => {
-    copy(`http://localhost:3000${location.pathname}`);
+    copy(`http://localhost:3000${pathname.replace('/in-progress', '')}`);
     setCopiedUrl('Link copied!');
   };
 
   const handleLocalStorage = () => {
-    const currentPage = location.pathname.split('/')[1];
+    const currentPage = pathname.split('/')[1];
     const item = {
       id,
       type: currentPage === 'foods' ? 'food' : 'drink',
@@ -37,6 +30,23 @@ const ProgressDetails = ({
       image,
     };
     saveLocalStorage(item);
+  };
+
+  const handleCheck = (target) => {
+    if (checkedIngredient.length) {
+      const stepDone = checkedIngredient.some((ingredient) => ingredient === target);
+      if (stepDone) {
+        checkedIngredient = checkedIngredient
+          .filter((ingredient) => ingredient !== target);
+      } checkedIngredient.push(target);
+    } else checkedIngredient.push(target);
+    console.log(checkedIngredient);
+  };
+
+  const checkStepsDoneList = (target) => {
+    console.log(checkedIngredient);
+    return checkedIngredient
+      .some((ingredient) => ingredient === target);
   };
 
   return (
@@ -75,14 +85,36 @@ const ProgressDetails = ({
       </div>
       <div>
         { ingredients.map((ingredient, index) => (
-          <div key={ index }>
-            { `${ingredient[1]} - ${measure[index][1]}` }
-            <input
-              type="checkbox"
+          <label key={ index } htmlFor="steps-checkbox">
+            <div
               data-testid={ `${index}-ingredient-step` }
+              onClick={
+                handleCheck.bind(null, `${ingredient[1]} - ${measure[index][1]}`)
+              }
+              onKeyPress={
+                handleCheck.bind(null, `${ingredient[1]} - ${measure[index][1]}`)
+              }
+              role="checkbox"
+              tabIndex={ index }
+              aria-checked={
+                checkStepsDoneList.bind(null, `${ingredient[1]} - ${measure[index][1]}`)
+              }
               value={ `${ingredient[1]} - ${measure[index][1]}` }
-            />
-          </div>
+            >
+              { `${ingredient[1]} - ${measure[index][1]}` }
+              <input
+                name="steps-checkbox"
+                type="checkbox"
+                value={ `${ingredient[1]} - ${measure[index][1]}` }
+                aria-checked={
+                  checkStepsDoneList.bind(null, `${ingredient[1]} - ${measure[index][1]}`)
+                }
+                onClick={
+                  handleCheck.bind(null, `${ingredient[1]} - ${measure[index][1]}`)
+                }
+              />
+            </div>
+          </label>
         ))}
       </div>
       <div>
