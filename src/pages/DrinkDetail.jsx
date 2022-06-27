@@ -52,7 +52,8 @@ const DrinkDetail = () => {
         id={ params.id }
         image={ currentDrink.strDrinkThumb }
         title={ currentDrink.strDrink }
-        category={ currentDrink.strAlcoholic }
+        category={ currentDrink.strCategory }
+        alcoholic={ currentDrink.strAlcoholic }
         instructions={ currentDrink.strInstructions }
         ingredients={ ingredients }
         measure={ measure }

@@ -19,27 +19,27 @@ function Header() {
       return 'Profile';
     case '/foods':
       setSearchAvailable(true);
-      return 'Página inicial de comidas';
+      return 'Foods';
     case '/drinks':
       setSearchAvailable(true);
-      return 'Página inicial de bebidas';
+      return 'Drinks';
     case '/explore':
-      return 'Explorar';
+      return 'Explore';
     case '/explore/foods':
-      return 'Explorar comidas';
+      return 'Explore Foods';
     case '/explore/drinks':
-      return 'Explorar Bebidas';
+      return 'Explore Drinks';
     case '/explore/foods/ingredients':
-      return 'Explorar comidas por ingrediente';
+      return 'Explore Ingredients';
     case '/explore/drinks/ingredients':
-      return 'Explorar bebidas por ingrediente';
+      return 'Explore Ingredients';
     case '/explore/foods/nationalities':
       setSearchAvailable(true);
-      return 'Explorar comidas por nacionalidade';
+      return 'Explore Nationalities';
     case '/done-recipes':
-      return 'Receitas feitas';
+      return 'Done Recipes';
     case '/favorite-recipes':
-      return 'Receitas favoritas';
+      return 'Favorite Recipes';
     default:
       setSearchAvailable(false);
       return 'Not Found';
@@ -65,18 +65,16 @@ function Header() {
       <h3 data-testid="page-title">{ pageName }</h3>
       <button
         type="button"
-        data-testid="profile-top-btn"
         onClick={ (e) => goToProfilePage(e) }
       >
-        <img src={ profileIcon } alt="profile-icon" />
+        <img src={ profileIcon } alt="profile-icon" data-testid="profile-top-btn" />
       </button>
       {searchAvailable && (
         <button
           type="button"
-          data-testid="search-top-btn"
           onClick={ (e) => getSearchBar(e) }
         >
-          <img src={ searchIcon } alt="seacrh-icon" />
+          <img src={ searchIcon } alt="seacrh-icon" data-testid="search-top-btn" />
         </button>
       )}
       {search && <SearchBar currentPage={ history.location.pathname } />}
