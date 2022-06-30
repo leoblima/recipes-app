@@ -1,13 +1,18 @@
 h6 {
+  max-width: 150px;
+  overflow: hidden;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .recipes {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
-  margin: 20px;
+  margin-top: 30px;
 }
 
 .recipes-img {
@@ -16,14 +21,22 @@ h6 {
 
 .card-container {
   background-color: rgb(241, 241, 241);
-  border: 1px rgb(126, 126, 126) solid;
+  filter: drop-shadow(7px 5px 5px #949494);
   padding: 10px;
   transition: 0.3s;
 }
 
 .card-container:hover {
   background-color: white;
-  border: 3px rgb(126, 126, 126) solid;
   padding: 10px;
   transform: scale(1.1);
+}
+
+a:visited, a:link {
+  color: black;
+  text-decoration: none;
+}
+
+body {
+  margin-bottom: 100px;
 }

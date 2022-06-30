@@ -1,0 +1,10 @@
+.explore-items {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.explore-btn {
+  margin: 10px;
+}

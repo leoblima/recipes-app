@@ -5,6 +5,7 @@ import { fetchFoodApiByFilter, fetchDrinkApiByFilter } from '../hooks/fetchApi';
 import { Context } from '../context/context';
 import FilteredFoods from './FilteredFoods';
 import FilteredDrinks from './FilteredDrinks';
+import './SearchBar.css';
 
 const SearchBar = ({ currentPage }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -70,7 +71,7 @@ const SearchBar = ({ currentPage }) => {
       </div>
       <div className="form-group">
         <label htmlFor="ingredient">
-          Ingredient
+          <span className="radial-text">Ingredient</span>
           <input
             type="radio"
             name="radio-search"
@@ -82,7 +83,7 @@ const SearchBar = ({ currentPage }) => {
           />
         </label>
         <label htmlFor="name">
-          Name
+          <span className="radial-text"> Name </span>
           <input
             type="radio"
             name="radio-search"
@@ -94,7 +95,7 @@ const SearchBar = ({ currentPage }) => {
           />
         </label>
         <label htmlFor="firstletter">
-          First Letter
+          <span className="radial-text">First Letter </span>
           <input
             type="radio"
             name="radio-search"

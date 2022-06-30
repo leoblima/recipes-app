@@ -11,7 +11,6 @@ const Drinks = () => {
 
   return (
     <div>
-      <h2>Drinks</h2>
       <Header />
       <Categories data={ drinkCategories } type="Drink" />
       <RecipeCard data={ drinksData } type="Drink" />

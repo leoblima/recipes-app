@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
+import './Header.css';
 
 function Header() {
   const history = useHistory();
@@ -60,7 +61,7 @@ function Header() {
   }, [history]);
 
   return (
-    <div>
+    <div className="header">
       <h3 data-testid="page-title">{ pageName }</h3>
       <button
         type="button"

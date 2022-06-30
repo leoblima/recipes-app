@@ -1,0 +1,14 @@
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.nav-button {
+  border-radius: 10px;
+  height: 50px;
+  margin-top: 20px;
+  overflow: scroll;
+  width: 100px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
+import './Details.css';
 import saveLocalStorage from '../services/saveLocalStorage';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -71,7 +72,7 @@ const Detail = ({
 
   return (
     <div className="container d-flex flex-column text-center">
-      <div>
+      <div className="details">
         <img
           className="img-fluid"
           src={ image }
@@ -86,27 +87,26 @@ const Detail = ({
       </div>
       <div>
         <span>{ copiedUrl !== '' ? copiedUrl : '' }</span>
-        <button
-          type="button"
-          data-testid="share-btn"
-          className="btn btn-primary mr-3"
-          onClick={ copyUrlToShare }
-        >
-          Compartilhar
-        </button>
-        <button
-          type="button"
-          className="btn btn-warning"
-          onClick={ handleLocalStorage }
-        >
-          <img
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-            alt="favorite-Status-Heart"
+        <div>
+          <button
+            type="button"
+            data-testid="share-btn"
+            className="details-btn btn btn-primary mr-3"
+            onClick={ copyUrlToShare }
+          >
+            Compartilhar
+          </button>
+          <button
+            type="button"
             data-testid="favorite-btn"
-          />
-        </button>
+            className="details-btn btn btn-warning"
+            onClick={ handleLocalStorage }
+          >
+            Favoritar
+          </button>
+        </div>
       </div>
-      <div>
+      <div className="recipe-ingredients">
         { ingredients.map((ingredient, index) => (
           <p
             key={ index }
@@ -132,7 +132,7 @@ const Detail = ({
           RECEITAS RECOMENDADAS AQUI
         </p>
       </div>
-      <div>
+      <div className="details-btn-footer">
         <button
           type="button"
           data-testid="start-recipe-btn"

@@ -1,7 +1,12 @@
-.login {
-  margin: auto;
+.login-main {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50%;
 }
 
-.login-main {
-  display: flex;
+.login-btn {
+  margin-left: 24%;
+  width: 100px;
 }

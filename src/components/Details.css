@@ -1,0 +1,18 @@
+img {
+  filter: drop-shadow(7px 5px 5px #949494);
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.details-btn-footer {
+  max-width: 100%;
+}
+
+p {
+  font-weight: 450;
+  margin-top: 20px;
+}
+
+.details-btn {
+  width: 150px;
+}

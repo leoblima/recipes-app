@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Context } from '../context/context';
+import './Categories.css';
 
 const Categories = ({ data, type }) => {
   const {
@@ -36,6 +37,7 @@ const Categories = ({ data, type }) => {
           key={ item.strCategory }
           data-testid={ [`${item.strCategory}-category-filter`] }
           onClick={ () => filterBtn(item.strCategory) }
+          className="nav-button btn-primary"
         >
           { item.strCategory }
         </button>
@@ -44,8 +46,9 @@ const Categories = ({ data, type }) => {
         type="button"
         onClick={ removeFilters }
         data-testid="All-category-filter"
+        className="nav-button btn-primary"
       >
-        Clear Filters
+        All
       </button>
     </nav>
   );

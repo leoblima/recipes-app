@@ -21,6 +21,7 @@ export default function BottomMenu() {
             data-testid="drinks-bottom-btn"
             type="button"
             onClick={ removeFilters }
+            className="footer-btn"
           >
             <img src={ drinkIcon } alt="Ícone bebidas" />
           </button>
@@ -31,6 +32,7 @@ export default function BottomMenu() {
             data-testid="explore-bottom-btn"
             type="button"
             onClick={ removeFilters }
+            className="footer-btn"
           >
             <img src={ exploreIcon } alt="Ícone explorar" />
           </button>
@@ -41,6 +43,7 @@ export default function BottomMenu() {
             data-testid="food-bottom-btn"
             type="button"
             onClick={ removeFilters }
+            className="footer-btn"
           >
             <img src={ mealIcon } alt="Ícone comidas" />
           </button>

@@ -1,0 +1,10 @@
+.explore-drinks-or-meals {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.btn-explore-foods {
+  margin: 10px;
+}
