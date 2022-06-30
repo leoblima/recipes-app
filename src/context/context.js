@@ -33,6 +33,7 @@ const ContextProvider = ({ children }) => {
   const [mealsIngredientsData, setMealsIngredientsData] = useState([]);
   const [drinksIngredientsData, setDrinksIngredientsData] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState([]);
+  const [recipeInProgress, setRecipeInProgress] = useState(false);
 
   const getIngredientsData = async () => {
     const mealsIngredients = await getIngredients('meal');
@@ -121,6 +122,8 @@ const ContextProvider = ({ children }) => {
     setFoodDetail,
     drinkDetail,
     setDrinkDetail,
+    recipeInProgress,
+    setRecipeInProgress,
   };
 
   return (

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import './Details.css';
 import saveLocalStorage from '../services/saveLocalStorage';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 const Detail = ({
   image, title, category, instructions, video,
@@ -13,6 +15,7 @@ const Detail = ({
   const location = useLocation();
 
   const [copiedUrl, setCopiedUrl] = useState('');
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleRedirectToProgress = () => {
     const path = location.pathname.split('/')[1];
@@ -24,7 +27,7 @@ const Detail = ({
     setCopiedUrl('Link copied!');
   };
 
-  const handleLocalStorage = () => {
+  const sendToLocalStorage = () => {
     const currentPage = location.pathname.split('/')[1];
     const item = {
       id,
@@ -37,6 +40,35 @@ const Detail = ({
     };
     saveLocalStorage(item);
   };
+
+  const deleteFromLocalStorage = () => {
+    const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (getFavorites) {
+      const newFavArr = getFavorites.filter((recipe) => recipe.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavArr));
+    }
+  };
+
+  const handleLocalStorage = () => {
+    if (!isFavorite) {
+      sendToLocalStorage();
+    } else {
+      deleteFromLocalStorage();
+    }
+    setIsFavorite(!isFavorite);
+  };
+
+  const checkIsFavorite = () => {
+    const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (getFavorites) {
+      const isPresent = getFavorites.some((recipe) => recipe.id === id);
+      setIsFavorite(isPresent);
+    }
+  };
+
+  useEffect(() => {
+    checkIsFavorite();
+  }, [isFavorite]);
 
   return (
     <div className="container d-flex flex-column text-center">
